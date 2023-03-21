@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamLapia Dashboard</title>
+
+    <!--custom font-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+
+    <!--material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom icon -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <!--insert custom css-->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- apex chart link -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+
+</head>
+<body>
+    <div class="grid-container">
+        <!--header-->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-icons-outlined">
+                    diversity_2
+                    </span> TeamLapia
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+        </header>
+        <!--end header-->
+
+        <!--side bar-->
+        <!-- <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">
+                        engineering
+                        </span> TeamLapia
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">
+                    close
+                    </span>
+            </div>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">
+                        dashboard
+                        </span> Dashboard
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">
+                        analytics
+                        </span> Analytics
+                </li>
+            </ul>
+        </aside> -->
+        <!--end sidebar-->
+
+        <!--main-->
+        <main class="main-container">
+            <div class="main title">
+                <h2>DASHBOARD</h2>
+            </div>
+            <div class="main-cards">
+
+                <!-- ph sensor -->
+                <div class="card">
+                    <div class="card-inner">
+                        <span class="material-icons-outlined">
+                            troubleshoot
+                            </span> pH
+                            <!-- <h2>pH</h2> -->
+                    </div>
+                    <div class="ph_number_generator">
+                        <span id="ph_number">0</span>
+                    </div>
+                </div>
+                
+                <!-- Dissolved oxygen -->
+                <div class="card">
+                    <div class="card-inner">
+                        <!-- <h3>Dissolved Oxygen</h3> -->
+                        <span class="material-icons-outlined">
+                            blur_circular
+                            </span> Dissolved Oxygen
+                            <!-- <h2>Dissolved Oxygen</h2> -->
+                    </div>
+                    <div class="do_number_generator">
+                        <span id="do_number">0</span> mg/L
+                    </div>
+                </div>
+
+                <!-- temperature -->
+                <div class="card">
+                    <div class="card-inner">
+                        <!-- <h3>Temperature</h3> -->
+                        <span class="material-icons-outlined">
+                            thermostat
+                            </span>Temperature
+                    </div>
+                    <!-- <h1> -- &deg;C</h1> -->
+                    <div class="temp_number_generator">
+                        <span id="temp_number">0</span> &deg;C
+                    </div>
+                </div>
+
+                <!-- turbidity -->
+                <div class="card">
+                    <div class="card-inner">
+                        <!-- <h3>Turbidity</h3> -->
+                        <span class="material-icons-outlined">
+                            science
+                            </span> Turbidity
+                    </div>
+                    <div class="turb_number_generator">
+                        <span id="turb_number">0</span> NTU
+                    </div>
+                </div>
+            </div>
+<!-- CHARTS / GRAPHS -->
+            <div class="charts">
+
+                <!-- ph chart -->
+                <div class="charts-card">
+                    <h2 class="chart-title">pH  Level</h2>
+                    <canvas id="sample1_chart"></canvas>
+                </div>
+
+                <!-- do chart -->
+                <div class="charts-card">
+                    <h2 class="chart-title">Dissolved Oxygen</h2>
+                    <canvas id="sample2_chart"></canvas>
+                </div>
+
+                <!-- temp chart -->
+                <div class="charts-card">
+                    <h2 class="chart-title">Temperature</h2>
+                    <canvas id="sample3_chart"></canvas>
+                </div>
+
+                <!-- turbidity chart -->
+                <div class="charts-card">
+                    <h2 class="chart-title">Turbidity</h2>
+                    <canvas id="sample4_chart"></canvas>
+                </div>
+
+            </div>
+        </main>
+        <!--end main-->
+    </div>
+    <!-- Scripts -->
+    <!-- chart js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+    <script src="js/ph_chart.js"></script>
+    <script src="js/do_chart.js"></script>
+    <script src="js/temp_chart.js"></script>
+    <script src="js/turb_chart.js"></script>
+    <!-- apex chart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!--custom JS-->
+    <script> scr="js/scripts.js"</script>
+</body>
+</html>
